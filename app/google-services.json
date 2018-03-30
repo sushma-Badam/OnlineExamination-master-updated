@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "952535594977",
+    "firebase_url": "https://slide-6c62e.firebaseio.com",
+    "project_id": "slide-6c62e",
+    "storage_bucket": "slide-6c62e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952535594977:android:ec385e87ea1c9f3a",
+        "android_client_info": {
+          "package_name": "com.it.acumen.slide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952535594977-ucrq7pvj0pkakiueof8stuo3h02l09la.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.it.acumen.slide",
+            "certificate_hash": "e63a04d4a7480caa39729223b99550e1af7fc94b"
+          }
+        },
+        {
+          "client_id": "952535594977-738du7ersudm6q02dj5rb8bq0uun3g3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRLK85NKZYAue3MT7avkVAp5r8CoEejek"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952535594977-738du7ersudm6q02dj5rb8bq0uun3g3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
