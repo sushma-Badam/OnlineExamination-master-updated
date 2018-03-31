@@ -5,6 +5,7 @@ package com.it.acumen.slide;
  */
 
 public class Questions {
+    private int score;
     private String a;
     private String b;
     private String c;
@@ -72,4 +73,5 @@ public class Questions {
     public void setQuestion(String question) {
         this.question = question;
     }
+
 }

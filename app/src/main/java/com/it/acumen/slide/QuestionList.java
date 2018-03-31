@@ -2,6 +2,7 @@ package com.it.acumen.slide;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -21,6 +24,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
+
+
 
 import java.util.ArrayList;
 //sdsd
@@ -33,16 +38,27 @@ public class QuestionList extends AppCompatActivity{
     private FirebaseRecyclerAdapter<Questions, QuestionHolder> recyclerAdapter;
     private ArrayList<String> topics = new ArrayList<>();
     private String URL;
+    int score=0;
+    private Button scbtn;
+    private EditText Scorei;
     FirebaseDatabase database;
+    Camera camera;
+    FrameLayout framelayout;
+    ShowCamera showCamera;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerview);
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-
-        if(!extras.isEmpty())
-        {
+        scbtn = (Button) findViewById(R.id.submitques);
+        Scorei = (EditText) findViewById(R.id.score);
+        framelayout = (FrameLayout) findViewById(R.id.framelayout);
+        camera = Camera.open(1);
+        showCamera = new ShowCamera(QuestionList.this, camera);
+        framelayout.addView(showCamera);
+        //camera-code
+        if (!extras.isEmpty()) {
             URL = extras.getString("topic");
         }
 
@@ -69,38 +85,34 @@ public class QuestionList extends AppCompatActivity{
                 holder.a.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(QuestionList.this, models.getCorrect().toLowerCase(), Toast.LENGTH_SHORT).show();
                         arc.a.setEnabled(false);
                         arc.b.setEnabled(false);
                         arc.c.setEnabled(false);
                         arc.d.setEnabled(false);
 
-                        if(!arc.a.getText().toString().toLowerCase().equals(models.getCorrect().toLowerCase()))
-                        {
+                        if (!arc.a.getText().toString().toLowerCase().equals(models.getCorrect().toLowerCase())) {
                             arc.relativeLayout.setBackgroundColor(Color.RED);
-                        }
-
-                        else
+                        } else {
                             arc.relativeLayout.setBackgroundColor(Color.GREEN);
+                            score = score + 1;
+                        }
                     }
                 });
 
                 holder.b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(QuestionList.this, models.getCorrect().toLowerCase(), Toast.LENGTH_SHORT).show();
                         arc.a.setEnabled(false);
                         arc.b.setEnabled(false);
                         arc.c.setEnabled(false);
                         arc.d.setEnabled(false);
 
-                        if(!arc.a.getText().toString().toLowerCase().equals(models.getCorrect().toLowerCase()))
-                        {
+                        if (!arc.b.getText().toString().toLowerCase().equals(models.getCorrect().toLowerCase())) {
                             arc.relativeLayout.setBackgroundColor(Color.RED);
-                        }
-
-                        else
+                        } else {
                             arc.relativeLayout.setBackgroundColor(Color.GREEN);
+                            score = score + 1;
+                        }
                     }
 
 
@@ -109,40 +121,34 @@ public class QuestionList extends AppCompatActivity{
                 holder.c.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(QuestionList.this, models.getCorrect().toLowerCase(), Toast.LENGTH_SHORT).show();
                         arc.a.setEnabled(false);
                         arc.b.setEnabled(false);
                         arc.c.setEnabled(false);
                         arc.d.setEnabled(false);
 
-                        if(!arc.a.getText().toString().toLowerCase().equals(models.getCorrect().toLowerCase()))
-                        {
+                        if (!arc.c.getText().toString().toLowerCase().equals(models.getCorrect().toLowerCase())) {
                             arc.relativeLayout.setBackgroundColor(Color.RED);
-                        }
-
-                        else
+                        } else {
                             arc.relativeLayout.setBackgroundColor(Color.GREEN);
-
+                            score = score + 1;
+                        }
                     }
                 });
 
                 holder.d.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(QuestionList.this, models.getCorrect().toLowerCase(), Toast.LENGTH_SHORT).show();
                         arc.a.setEnabled(false);
                         arc.b.setEnabled(false);
                         arc.c.setEnabled(false);
                         arc.d.setEnabled(false);
 
-                        if(!arc.a.getText().toString().toLowerCase().equals(models.getCorrect().toLowerCase()))
-                        {
+                        if (!arc.d.getText().toString().toLowerCase().equals(models.getCorrect().toLowerCase())) {
                             arc.relativeLayout.setBackgroundColor(Color.RED);
-                        }
-
-                        else
+                        } else {
                             arc.relativeLayout.setBackgroundColor(Color.GREEN);
-
+                            score = score + 1;
+                        }
                     }
                 });
 
@@ -162,7 +168,14 @@ public class QuestionList extends AppCompatActivity{
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(recyclerAdapter);
 
+        scbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Scorei.setText("Total Score:" + score);
+            }
+        });
     }
+
 
 
     @Override

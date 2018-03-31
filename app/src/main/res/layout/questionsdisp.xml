@@ -80,17 +80,12 @@
                     android:textColor="@color/album_title"
                     android:textSize="@dimen/album_title" />
 
-
-
-
-
-
-
             </RelativeLayout>
 
 
         </android.support.v7.widget.CardView>
 
     </HorizontalScrollView>
+
 
 </LinearLayout>
